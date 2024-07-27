@@ -75,6 +75,7 @@ const { shop } = shopStore;
     >
       <!-- Use the dynamic image URL directly -->
       <img :src="shop.image" class="h-10" alt="CodifyLogo" />
+      <h1>{{ shop.name }}</h1>
       <!-- Ensure shop data exists -->
       <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
         <div class="relative">
