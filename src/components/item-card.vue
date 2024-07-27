@@ -32,33 +32,34 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "ItemCard",
-  props: {
-    imageSrc: {
-      type: String,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    price: {
-      type: String,
-      required: true,
-    },
-    discountPrice: {
-      type: String,
-      required: false,
-    },
-    productLink: {
-      type: String,
-      required: true,
-    },
+<script setup>
+import { defineProps } from 'vue';
+
+// Define props
+defineProps({
+  imageSrc: {
+    type: String,
+    required: true,
   },
-};
+  title: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: String,
+    required: true,
+  },
+  discountPrice: {
+    type: String,
+    required: false,
+  },
+  productLink: {
+    type: String,
+    required: true,
+  },
+});
 </script>
+
 <style scoped>
 .square-card {
   height: 20rem;

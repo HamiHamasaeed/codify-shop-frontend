@@ -1,3 +1,8 @@
+<script setup>
+import TopBar from "@/components/master/top-bar.vue";
+import TopBanner from "@/components/master/top-banner.vue";
+</script>
+
 <template>
   <div id="app">
     <TopBanner title="Welcome to Codify Store" />
@@ -7,18 +12,6 @@
     </div>
   </div>
 </template>
-<script>
-import TopBar from "@/components/master/top-bar.vue";
-import TopBanner from "@/components/master/top-banner.vue";
-
-export default {
-  name: "App",
-  components: {
-    TopBanner,
-    TopBar,
-  },
-};
-</script>
 
 <style>
 .main-content {

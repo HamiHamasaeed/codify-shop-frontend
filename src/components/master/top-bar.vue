@@ -1,11 +1,81 @@
-<!-- src/components/TopBar.vue -->
+<script setup>
+import { useShopStore } from "@/store/shop.js";
+import { ref, onMounted, onBeforeUnmount, watch } from "vue";
+import { useI18n } from "vue-i18n";
+
+const shopStore = useShopStore();
+const { t, locale } = useI18n();
+const selectedLanguage = ref("en");
+const isTopOpen = ref(false);
+const isSmallScreen = ref(window.innerWidth < 768);
+const isDropdownOpen = ref(false);
+const languageNames = ref({
+  en: "English",
+  ku: "کوردی",
+});
+
+// Methods
+const toggleMenu = () => {
+  isTopOpen.value = !isTopOpen.value;
+};
+
+const handleSize = () => {
+  isSmallScreen.value = window.innerWidth < 768;
+  if (!isSmallScreen.value) {
+    isTopOpen.value = false;
+  }
+};
+
+const changeLanguage = (lang) => {
+  selectedLanguage.value = lang;
+  locale.value = lang;
+  isDropdownOpen.value = false; // Close the dropdown after selecting a language
+};
+
+const toggleDropdown = () => {
+  isDropdownOpen.value = !isDropdownOpen.value;
+};
+
+// Watchers
+watch(
+  () => shopStore.shop,
+  (newShop) => {
+    console.log("Shop data updated:", newShop);
+  }
+);
+
+// Lifecycle hooks
+onMounted(() => {
+  window.addEventListener("resize", handleSize);
+  console.log("Fetching shop data...");
+  shopStore.fetchShopData();
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", handleSize);
+});
+
+const { shop } = shopStore;
+</script>
+
+<style scoped>
+.new {
+  margin-top: 54px;
+}
+
+.spaceP {
+  margin-bottom: 20px;
+}
+</style>
+
 <template>
-  <nav class="new bg-[#37393d] fixed w-full z-20 top-0 start-0 top-bar',">
+  <nav class="new bg-[#37393d] fixed w-full z-20 top-0 start-0 top-bar">
     <div
       class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
     >
-      <img :src="logoSrc" class="h-10" alt="CodifyLogo" />
-
+      <!-- Use the dynamic image URL directly -->
+      <img :src="shop.image" class="h-10" alt="CodifyLogo" />
+      <!-- Ensure shop data exists -->
       <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
         <div class="relative">
           <button
@@ -59,7 +129,6 @@
           aria-controls="navbar-sticky"
           aria-expanded="false"
         >
-          <!-- <span class="sr-only">Open main menu</span> -->
           <svg
             class="w-5 h-5"
             aria-hidden="true"
@@ -88,95 +157,31 @@
         >
           <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
             <router-link @click="toggleMenu" to="/">
-              {{ $t("home") }}
+              {{ t("home") }}
             </router-link>
           </li>
           <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
             <router-link @click="toggleMenu" to="/shop">
-              {{ $t("shop") }}
+              {{ t("shop") }}
             </router-link>
           </li>
           <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
-            <router-link @click="toggleMenu" to="/projects">{{
-              $t("projects")
-            }}</router-link>
+            <router-link @click="toggleMenu" to="/projects">
+              {{ t("projects") }}
+            </router-link>
           </li>
           <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
-            <router-link @click="toggleMenu" to="/systems">{{
-              $t("systems")
-            }}</router-link>
+            <router-link @click="toggleMenu" to="/systems">
+              {{ t("systems") }}
+            </router-link>
           </li>
           <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
-            <router-link @click="toggleMenu" to="/about">{{
-              $t("about")
-            }}</router-link>
+            <router-link @click="toggleMenu" to="/about">
+              {{ t("about") }}
+            </router-link>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 </template>
-
-<script>
-export default {
-  name: "TopBar",
-  data() {
-    return {
-      logoSrc: require("@/assets/logo/whiteLogo.png"), // Correct path to the logo
-      selectedLanguage: "en",
-      isTopOpen: false,
-      isSmallScreen: window.innerWidth < 768,
-      lastScrollTop: 0,
-      isHidden: false,
-      isDropdownOpen: false, // Add this data property
-      languageNames: {
-        en: "English",
-        ku: "کوردی",
-      },
-    };
-  },
-  created() {
-    window.addEventListener("resize", this.handleSize);
-    window.addEventListener("scroll", this.handleScroll);
-  },
-  beforeUnmount() {
-    window.removeEventListener("resize", this.handleSize);
-    window.removeEventListener("scroll", this.handleScroll);
-  },
-  methods: {
-    toggleMenu() {
-      this.isTopOpen = !this.isTopOpen;
-    },
-    handleSize() {
-      this.isSmallScreen = window.innerWidth < 768;
-      if (!this.isSmallScreen) {
-        this.isTopOpen = false;
-      }
-    },
-    changeLanguage(lang) {
-      this.selectedLanguage = lang;
-      this.$i18n.locale = lang;
-      this.isDropdownOpen = false; // Close the dropdown after selecting a language
-    },
-
-    toggleDropdown() {
-      this.isDropdownOpen = !this.isDropdownOpen;
-    },
-  },
-  watch: {
-    selectedLanguage(newLang) {
-      console.log(`Selected language: ${newLang}`);
-    },
-  },
-};
-</script>
-
-<style scoped>
-.new {
-  margin-top: 54px;
-}
-
-.spaceP {
-  margin-bottom: 20px;
-}
-</style>
