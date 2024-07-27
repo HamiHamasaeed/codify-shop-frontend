@@ -1,0 +1,187 @@
+<!-- src/components/TopBar.vue -->
+<template>
+  <div :class="['top-bar', { 'hidden-bar': isHidden }]">
+    <div class="logo">
+      <img
+        class="cursor-pointer"
+        src="@/assets/logo/whiteLogo.png"
+        alt="Logo"
+      />
+    </div>
+
+    <div class="nav-links" :class="{ open: isTopOpen }">
+      <router-link
+        @click="toggleMenu"
+        class="hover:bg-gray-600 justify-center hover:rounded-md"
+        to="/"
+      >{{ $t("home") }}</router-link>
+      <router-link
+        @click="toggleMenu"
+        class="hover:bg-gray-600 justify-center hover:rounded-md"
+        to="/shop"
+      >{{ $t("shop") }}</router-link>
+      <router-link
+        @click="toggleMenu"
+        class="hover:bg-gray-600 justify-center hover:rounded-md"
+        to="/projects"
+      >{{ $t("projects") }}</router-link>
+      <router-link
+        @click="toggleMenu"
+        class="hover:bg-gray-600 justify-center hover:rounded-md"
+        to="/systems"
+      >{{ $t("systems") }}</router-link>
+      <router-link
+        @click="toggleMenu"
+        class="hover:bg-gray-600 justify-center hover:rounded-md"
+        to="/about"
+      >{{ $t("about") }}</router-link>
+    </div>
+    <button class="menu-button pt-2 pb-2" @click="toggleMenu">
+      <ion-icon
+        name="menu-outline"
+        class="hover:text-green-400 text-white text-4xl flex items-center"
+      ></ion-icon>
+    </button>
+    <div class="lang-dropdown ml-3 flex items-center">
+      <ion-icon class="text-xl" name="language-outline"></ion-icon>
+      <select
+        v-model="selectedLanguage"
+        @change="changeLanguage"
+        class="rounded-md cursor-pointer bg-[#37393d] text-white pl-1"
+      >
+        <option value="en">{{ $t("en") }}</option>
+        <option value="ku">{{ $t("ku") }}</option>
+      </select>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "TopBar",
+  data() {
+    return {
+      selectedLanguage: "en",
+      isTopOpen: false,
+      isSmallScreen: window.innerWidth < 768,
+      lastScrollTop: 0,
+      isHidden: false,
+    };
+  },
+  created() {
+    window.addEventListener("resize", this.handleSize);
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener("resize", this.handleSize);
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    toggleMenu() {
+      this.isTopOpen = !this.isTopOpen;
+    },
+    handleSize() {
+      this.isSmallScreen = window.innerWidth < 768;
+      if (!this.isSmallScreen) {
+        this.isTopOpen = false;
+      }
+    },
+    changeLanguage() {
+      this.$i18n.locale = this.selectedLanguage;
+    },
+    handleScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > this.lastScrollTop) {
+        // Scrolling down
+        this.isHidden = true;
+      } else {
+        // Scrolling up
+        this.isHidden = false;
+      }
+      this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    },
+  },
+  watch: {
+    selectedLanguage(newLang) {
+      // Logic to handle language change can go here
+      console.log(`Selected language: ${newLang}`);
+    },
+  },
+};
+</script>
+
+<style scoped>
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 54px;
+  padding: 10px 20px;
+  background-color: #37393d; /* Adjust as needed */
+  color: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  transition: transform 0.7s ease-in-out;
+}
+
+.hidden-bar {
+  transform: translateY(-80%);
+}
+
+.logo img {
+  height: 40px; /* Adjust as needed */
+}
+
+.nav-links {
+  display: flex;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 12px 10px;
+}
+
+.lang-dropdown select {
+  color: white;
+  font-size: 16px;
+}
+.lang-dropdown select:focus {
+  outline: none;
+}
+
+.menu-button {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Adjust according to the height of your top bar */
+    left: 0;
+    width: 100%;
+    background-color: #37393d;
+    padding: 10px 20px;
+
+  }
+
+  .menu-button {
+    display: block;
+  }
+}
+</style>
