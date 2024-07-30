@@ -11,7 +11,6 @@ function closeModal() {
 }
 </script>
 
-
 <template>
   <transition>
     <div
@@ -27,7 +26,7 @@ function closeModal() {
           <div
             class="flex items-center justify-between p-4 md:p-5 border-b rounded-t"
           >
-            <h3 class="text-xl font-medium text-gray-900">Default modal</h3>
+            <h3 class="text-xl font-medium text-gray-800">Default modal</h3>
             <button
               @click="closeModal"
               type="button"
@@ -72,4 +71,3 @@ function closeModal() {
     </div>
   </transition>
 </template>
-
