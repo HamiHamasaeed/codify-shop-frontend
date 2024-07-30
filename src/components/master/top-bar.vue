@@ -1,7 +1,9 @@
 <script setup>
 import { useShopStore } from "@/store/shop.js";
-import { ref, onMounted, onBeforeUnmount, watch } from "vue";
+import { ref, onMounted, onBeforeUnmount, watch, computed } from "vue";
 import { useI18n } from "vue-i18n";
+import { config } from "@/config.js";
+import Modal from "@/components/codify-modal.vue";
 
 const shopStore = useShopStore();
 const { t, locale } = useI18n();
@@ -9,6 +11,7 @@ const selectedLanguage = ref("en");
 const isTopOpen = ref(false);
 const isSmallScreen = ref(window.innerWidth < 768);
 const isDropdownOpen = ref(false);
+const modalActive = ref(false);
 const languageNames = ref({
   en: "English",
   ku: "کوردی",
@@ -50,12 +53,26 @@ onMounted(() => {
   console.log("Fetching shop data...");
   shopStore.fetchShopData();
 });
+const { shop } = shopStore;
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", handleSize);
 });
 
-const { shop } = shopStore;
+const imageUrl = computed(() => `${config.backendURL}${shop.image}`);
+const handleClick = () => {
+  if (isSmallScreen.value) {
+    toggleMenu();
+  }
+};
+
+const showModal = () => {
+  modalActive.value = true;
+  console.log(imageUrl.value);
+};
+const hideModal = () => {
+  modalActive.value = false;
+};
 </script>
 
 <style scoped>
@@ -69,13 +86,22 @@ const { shop } = shopStore;
 </style>
 
 <template>
+  <!-- Default Modal -->
+  <Modal @close-modal="hideModal" :modalActive="modalActive" />
+
   <nav class="new bg-[#37393d] fixed w-full z-20 top-0 start-0 top-bar">
     <div
       class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
     >
       <!-- Use the dynamic image URL directly -->
-      <img :src="shop.image" class="h-10" alt="CodifyLogo" />
-      <h1>{{ shop.name }}</h1>
+      <img
+        @click="showModal"
+        :src="imageUrl"
+        class="h-10 cursor-pointer"
+        alt="CodifyLogo"
+        @error="console.log('Image failed to load')"
+        @load="console.log('Image loaded successfully')"
+      />
       <!-- Ensure shop data exists -->
       <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
         <div class="relative">
@@ -157,22 +183,22 @@ const { shop } = shopStore;
           class="flex flex-col text-lg md:p-0 mt-4 text-white font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0"
         >
           <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
-            <router-link @click="toggleMenu" to="/">
+            <router-link @click="handleClick" to="/">
               {{ t("home") }}
             </router-link>
           </li>
           <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
-            <router-link @click="toggleMenu" to="/shop">
+            <router-link @click="handleClick" to="/shop">
               {{ t("shop") }}
             </router-link>
           </li>
           <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
-            <router-link @click="toggleMenu" to="/projects">
+            <router-link @click="handleClick" to="/projects">
               {{ t("projects") }}
             </router-link>
           </li>
           <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
-            <router-link @click="toggleMenu" to="/systems">
+            <router-link @click="handleClick" to="/systems">
               {{ t("systems") }}
             </router-link>
           </li>

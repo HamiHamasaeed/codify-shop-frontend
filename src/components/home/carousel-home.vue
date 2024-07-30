@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel">
+  <div class="carousel z-80">
     <div
       class="carousel-inner"
       :style="{ transform: `translateX(-${currentSlide * 100}%)` }"

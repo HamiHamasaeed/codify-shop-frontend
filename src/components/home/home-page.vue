@@ -68,7 +68,7 @@ export default {
           productLink: "#",
         },
         {
-          imageSrc: "/docs/images/products/apple-watch.png",
+          imageSrc: require("/src/assets/logo/whiteLogo.png"),
           title: "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
           price: "$599",
           discountPrice: "$699",
