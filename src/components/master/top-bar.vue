@@ -1,6 +1,6 @@
 <script setup>
 import { useShopStore } from "@/store/shop.js";
-import { ref, onMounted, onBeforeUnmount, watch, computed } from "vue";
+import { ref, onBeforeUnmount, watch, onBeforeMount } from "vue";
 import { useI18n } from "vue-i18n";
 import { config } from "@/config.js";
 import Modal from "@/components/codify-modal.vue";
@@ -41,25 +41,27 @@ const toggleDropdown = () => {
 
 // Watchers
 watch(
-  () => shopStore.shop,
+  () => shopStore.shop.value,
   (newShop) => {
     console.log("Shop data updated:", newShop);
   }
 );
+const shop= ref(null);
+const imageUrl = ref(null);
 
 // Lifecycle hooks
-onMounted(() => {
+onBeforeMount(async() => {
   window.addEventListener("resize", handleSize);
   console.log("Fetching shop data...");
-  shopStore.fetchShopData();
+  await shopStore.fetchShopData();
+  shop.value = shopStore.shop;
+  imageUrl.value = `${config.backendURL}${shop.value.image}`;
 });
-const { shop } = shopStore;
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", handleSize);
 });
 
-const imageUrl = computed(() => `${config.backendURL}${shop.image}`);
 const handleClick = () => {
   if (isSmallScreen.value) {
     toggleMenu();
