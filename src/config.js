@@ -1,4 +1,4 @@
 // src/config.js
 export const config = {
-    backendURL: 'http://172.20.10.2:3000',
+    backendURL: 'http://192.168.1.40:3000',
   };

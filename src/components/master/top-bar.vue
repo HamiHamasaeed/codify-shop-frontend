@@ -1,6 +1,6 @@
 <script setup>
 import { useShopStore } from "@/store/shop.js";
-import { ref, onBeforeUnmount, watch, onBeforeMount } from "vue";
+import { ref, onBeforeUnmount, onBeforeMount, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { config } from "@/config.js";
 import Modal from "@/components/codify-modal.vue";
@@ -40,22 +40,20 @@ const toggleDropdown = () => {
 };
 
 // Watchers
-watch(
-  () => shopStore.shop.value,
-  (newShop) => {
-    console.log("Shop data updated:", newShop);
-  }
+const shop = computed(() => shopStore.shop);
+const imageUrl = computed(() =>
+  shop.value ? `${config.backendURL}${shop.value.image}` : ""
 );
-const shop= ref(null);
-const imageUrl = ref(null);
 
 // Lifecycle hooks
-onBeforeMount(async() => {
+onBeforeMount(async () => {
   window.addEventListener("resize", handleSize);
   console.log("Fetching shop data...");
-  await shopStore.fetchShopData();
-  shop.value = shopStore.shop;
-  imageUrl.value = `${config.backendURL}${shop.value.image}`;
+  try {
+    await shopStore.fetchShopData();
+  } catch (error) {
+    console.error("Failed to fetch shop data:", error);
+  }
 });
 
 onBeforeUnmount(() => {
@@ -72,6 +70,7 @@ const showModal = () => {
   modalActive.value = true;
   console.log(imageUrl.value);
 };
+
 const hideModal = () => {
   modalActive.value = false;
 };
@@ -89,9 +88,23 @@ const hideModal = () => {
 
 <template>
   <!-- Default Modal -->
-  <Modal @close-modal="hideModal" :modalActive="modalActive" />
+  <Modal
+    @close-modal="hideModal"
+    :modalActive="modalActive"
+    desc="We are a passionate team dedicated to pushing the boundaries of technology through innovative coding, software development, and hardware solutions. At Codify, we believe in the power of collaboration, creativity, and clean code to transform ideas into reality"
+    phoneOne="0750 000 0000"
+    phoneTwo="0770 000 0000"
+    address="Ali namali"
+    email="codify.iq@gmail.com"
+    fb="https://www.facebook.com/Codify.iq/"
+    insta="https://www.instagram.com/codify.iq/"
+    linkedin="https://www.linkedin.com/company/codify-iq/"
+    tiktok="https://www.tiktok.com/@codify.iq"
+    github="https://github.com/bros4technology"
+    :imgLogo="imageUrl"
+  />
 
-  <nav class="new bg-[#37393d] fixed w-full z-20 top-0 start-0 top-bar">
+  <nav class="new bg-[#37393d]  fixed w-full z-20 top-0 start-0 top-bar">
     <div
       class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
     >
@@ -106,12 +119,13 @@ const hideModal = () => {
       />
       <!-- Ensure shop data exists -->
       <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-        <div class="relative">
+        <div class="flex justify-center space-x-4 rtl:space-x-reverse">
           <button
             id="dropdownHoverButton"
             @click="toggleDropdown"
             class="text-white bg-blue-500 hover:bg-blue-400 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
             type="button"
+            aria-label="Language selection"
           >
             {{ languageNames[selectedLanguage] }}
             <svg
@@ -131,11 +145,17 @@ const hideModal = () => {
             </svg>
           </button>
 
+          <!-- Updated Person Icon -->
+          <ion-icon
+            class="text-white text-4xl cursor-pointer hover:text-blue-400 transition-transform transform hover:scale-110"
+            name="person-circle-outline"
+          ></ion-icon>
+
           <!-- Dropdown menu -->
           <div
             v-if="isDropdownOpen"
             id="dropdownHover"
-            class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-[110px] mt-1"
+            class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-[110px] mt-11"
           >
             <ul class="py-1 text-sm text-gray-700">
               <li
@@ -154,9 +174,10 @@ const hideModal = () => {
           @click="toggleMenu"
           data-collapse-toggle="navbar-sticky"
           type="button"
-          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden text-white hover:bg-green-500 hover:text-gray-700 focus:outline-none"
+          class="inline-flex items-center w-10 h-10 justify-center text-sm rounded-lg md:hidden text-white transition-transform transform hover:scale-110 hover:text-green-400 focus:outline-none"
           aria-controls="navbar-sticky"
           aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <svg
             class="w-5 h-5"
@@ -184,28 +205,53 @@ const hideModal = () => {
         <ul
           class="flex flex-col text-lg md:p-0 mt-4 text-white font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0"
         >
-          <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
+          <li
+            :class="[
+              'hover:text-blue-300 transition-transform transform hover:scale-110',
+              { spaceP: isTopOpen },
+            ]"
+          >
             <router-link @click="handleClick" to="/">
               {{ t("home") }}
             </router-link>
           </li>
-          <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
+          <li
+            :class="[
+              'hover:text-blue-300 transition-transform transform hover:scale-110',
+              { spaceP: isTopOpen },
+            ]"
+          >
             <router-link @click="handleClick" to="/shop">
               {{ t("shop") }}
             </router-link>
           </li>
-          <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
+          <li
+            :class="[
+              'hover:text-blue-300 transition-transform transform hover:scale-110',
+              { spaceP: isTopOpen },
+            ]"
+          >
             <router-link @click="handleClick" to="/projects">
               {{ t("projects") }}
             </router-link>
           </li>
-          <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
+          <li
+            :class="[
+              'hover:text-blue-300 transition-transform transform hover:scale-110',
+              { spaceP: isTopOpen },
+            ]"
+          >
             <router-link @click="handleClick" to="/systems">
               {{ t("systems") }}
             </router-link>
           </li>
-          <li :class="['hover:text-blue-300', { spaceP: isTopOpen }]">
-            <router-link @click="toggleMenu" to="/about">
+          <li
+            :class="[
+              'hover:text-blue-300 transition-transform transform hover:scale-110',
+              { spaceP: isTopOpen },
+            ]"
+          >
+            <router-link @click="handleClick" to="/about">
               {{ t("about") }}
             </router-link>
           </li>

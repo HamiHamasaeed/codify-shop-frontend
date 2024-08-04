@@ -1,7 +1,7 @@
 <!-- src/components/TopBanner.vue -->
 <template>
   <div
-    :class="['top-banner', { 'hidden-banner': isHidden }]"
+    :class="['top-banner ', { 'hidden-banner': isHidden }]"
     :style="gradiantColor"
   >
     <h1 class="font-bold">{{ title }}</h1>

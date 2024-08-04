@@ -5,6 +5,8 @@ import { createI18n } from 'vue-i18n';
 import { createPinia } from 'pinia';
 import './assets/css/app.css'; 
 
+
+
 // Import localization messages
 import enMessages from './locales/en.json';
 import kuMessages from './locales/ku.json';

@@ -3,6 +3,17 @@ import { defineProps, defineEmits } from "vue";
 
 defineProps({
   modalActive: Boolean,
+  desc: String,
+  phoneOne: String,
+  phoneTwo: String,
+  address: String,
+  email: String,
+  fb: String,
+  insta: String,
+  linkedin: String,
+  tiktok: String,
+  github: String,
+  imgLogo: String,
 });
 
 const emit = defineEmits(["close-modal"]);
@@ -19,18 +30,18 @@ function closeModal() {
       tabindex="-1"
       class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60"
     >
-      <div class="relative w-full max-w-lg max-h-full">
+      <div class="relative w-full max-w-2xl max-h-full">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow">
           <!-- Modal header -->
           <div
-            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t"
+            class="flex items-center bg-gray-900 justify-between p-4 md:p-5 border-b rounded-t"
           >
-            <h3 class="text-xl font-medium text-gray-900">Default modal</h3>
+            <img class="h-12" :src="imgLogo" alt="Codify Logo" />
             <button
               @click="closeModal"
               type="button"
-              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+              class="text-gray-400 bg-transparent hover:bg-gray-500 hover:text-gray-200 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
               data-modal-hide="medium-modal"
             >
               <svg
@@ -52,19 +63,67 @@ function closeModal() {
             </button>
           </div>
           <!-- Modal body -->
-          <div class="p-4 md:p-5 space-y-4">
+          <div class="p-4 md:p-5 space-y-4 text-justify">
             <p class="text-base leading-relaxed text-gray-500">
-              With less than a month to go before the European Union enacts new
-              consumer privacy laws for its citizens, companies around the world
-              are updating their terms of service agreements to comply.
+              {{ desc }}
             </p>
-            <p class="text-base leading-relaxed text-gray-500">
-              The European Union’s General Data Protection Regulation (G.D.P.R.)
-              goes into effect on May 25 and is meant to ensure a common set of
-              data rights in the European Union. It requires organizations to
-              notify users as soon as possible of high-risk data breaches that
-              could personally affect them.
-            </p>
+            <h2 class="font-bold text-lg text-black">
+              The Language of Innovative
+            </h2>
+            <h3 class="text-md font-bold">
+              Address: <span v-if="address" class="font-normal">{{ address }}</span>
+              <span v-else class="font-normal">Address not available</span>
+            </h3>
+            <h3 class="text-md font-bold">
+              Email: <span v-if="email" class="font-normal">{{ email }}</span>
+              <span v-else class="font-normal">No Email Available</span>
+
+            </h3>
+            <h3 class="text-md font-bold">
+              Phone:
+              <span class="font-normal" v-if="phoneOne && phoneTwo"
+                >{{ phoneOne }} - {{ phoneTwo }}</span
+              >
+              <span class="font-normal" v-else-if="phoneOne">{{
+                phoneOne
+              }}</span>
+              <span class="font-normal" v-else-if="phoneTwo">{{
+                phoneTwo
+              }}</span>
+              <span class="font-normal" v-else>No phone number available</span>
+            </h3>
+            <div class="flex justify-end space-x-3 text-2xl text-gray-900">
+              <a :href="fb">
+                <ion-icon
+                  class="hover:bg-gray-500 hover:text-white hover:rounded-lg p-1 hover:cursor-pointer"
+                  name="logo-facebook"
+                ></ion-icon>
+              </a>
+              <a :href="insta">
+                <ion-icon
+                  class="hover:bg-gray-500 hover:text-white hover:rounded-lg p-1 hover:cursor-pointer"
+                  name="logo-instagram"
+                ></ion-icon>
+              </a>
+              <a :href="linkedin">
+                <ion-icon
+                  class="hover:bg-gray-500 hover:text-white hover:rounded-lg p-1 hover:cursor-pointer"
+                  name="logo-linkedin"
+                ></ion-icon>
+              </a>
+              <a :href="tiktok">
+                <ion-icon
+                  class="hover:bg-gray-500 hover:text-white hover:rounded-lg p-1 hover:cursor-pointer"
+                  name="logo-tiktok"
+                ></ion-icon>
+              </a>
+              <a :href="github">
+                <ion-icon
+                  class="hover:bg-gray-500 hover:text-white hover:rounded-lg p-1 hover:cursor-pointer"
+                  name="logo-github"
+                ></ion-icon>
+              </a>
+            </div>
           </div>
         </div>
       </div>
