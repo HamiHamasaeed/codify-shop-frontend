@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full max-w-xs bg-white border border-gray-200 rounded-lg shadow square-card"
+    class="w-full max-w-xs bg-white border cursor-pointer border-gray-200 rounded-lg shadow square-card transition-transform transform hover:scale-110"
   >
     <a
       :href="productLink"

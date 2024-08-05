@@ -23,7 +23,14 @@ function closeModal() {
 </script>
 
 <template>
-  <transition>
+  <transition
+    enter-active-class="transition-opacity ease-in duration-200"
+    enter-from-class="opacity-0"
+    enter-to-class="opacity-100"
+    leave-active-class="transition-opacity ease-out duration-300"
+    leave-from-class="opacity-100"
+    leave-to-class="opacity-0"
+  >
     <div
       v-show="modalActive"
       id="medium-modal"
@@ -71,13 +78,13 @@ function closeModal() {
               The Language of Innovative
             </h2>
             <h3 class="text-md font-bold">
-              Address: <span v-if="address" class="font-normal">{{ address }}</span>
+              Address:
+              <span v-if="address" class="font-normal">{{ address }}</span>
               <span v-else class="font-normal">Address not available</span>
             </h3>
             <h3 class="text-md font-bold">
               Email: <span v-if="email" class="font-normal">{{ email }}</span>
               <span v-else class="font-normal">No Email Available</span>
-
             </h3>
             <h3 class="text-md font-bold">
               Phone:

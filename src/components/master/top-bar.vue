@@ -7,7 +7,7 @@ import Modal from "@/components/codify-modal.vue";
 
 const shopStore = useShopStore();
 const { t, locale } = useI18n();
-const selectedLanguage = ref("en");
+const selectedLanguage = ref(locale.value); 
 const isTopOpen = ref(false);
 const isSmallScreen = ref(window.innerWidth < 768);
 const isDropdownOpen = ref(false);
@@ -33,6 +33,8 @@ const changeLanguage = (lang) => {
   selectedLanguage.value = lang;
   locale.value = lang;
   isDropdownOpen.value = false; // Close the dropdown after selecting a language
+  fetchData(lang); // Fetch data again with the new locale
+
 };
 
 const toggleDropdown = () => {
@@ -45,15 +47,23 @@ const imageUrl = computed(() =>
   shop.value ? `${config.backendURL}${shop.value.image}` : ""
 );
 
+//  const name = computed(() => shop.value ? shop.value.name : "");
+
+
 // Lifecycle hooks
-onBeforeMount(async () => {
-  window.addEventListener("resize", handleSize);
+const fetchData = async (lang) => {
   console.log("Fetching shop data...");
   try {
-    await shopStore.fetchShopData();
+    await shopStore.fetchShopData(lang);
   } catch (error) {
     console.error("Failed to fetch shop data:", error);
   }
+};
+
+
+onBeforeMount(async () => {
+  window.addEventListener("resize", handleSize);
+  await fetchData(selectedLanguage.value);
 });
 
 onBeforeUnmount(() => {
@@ -91,10 +101,10 @@ const hideModal = () => {
   <Modal
     @close-modal="hideModal"
     :modalActive="modalActive"
-    desc="We are a passionate team dedicated to pushing the boundaries of technology through innovative coding, software development, and hardware solutions. At Codify, we believe in the power of collaboration, creativity, and clean code to transform ideas into reality"
-    phoneOne="0750 000 0000"
-    phoneTwo="0770 000 0000"
-    address="Ali namali"
+    :desc=shop.description
+    :phoneOne= shop.phone
+    :phoneTwo=shop.phoneTwo
+    :address= shop.address
     email="codify.iq@gmail.com"
     fb="https://www.facebook.com/Codify.iq/"
     insta="https://www.instagram.com/codify.iq/"
