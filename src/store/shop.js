@@ -35,7 +35,7 @@ export const useShopStore = defineStore("shop", {
         const data = await response.json();
 
          if (data.message) {
-           console.log("Message from API:", data.message.value);
+           console.log("Message from API:", data.message);
         }
 
         this.shop = data.data; // Adjust based on actual response structure

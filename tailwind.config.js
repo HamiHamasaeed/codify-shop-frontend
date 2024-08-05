@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       screens: {
         lg: "1024px", // Default large breakpoint
-        xl: "1500px", // Custom breakpoint for 1500px
+        xl: "1440px", // Custom breakpoint for 1500px
         "custom-lg": { max: "1499px" }, // Custom max breakpoint for 1499px
       },
     },
