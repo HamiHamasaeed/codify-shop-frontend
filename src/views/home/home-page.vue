@@ -1,70 +1,38 @@
 <script setup>
 import Carousel from "./carousel-home.vue";
 import ItemCard from "@/components/item-card.vue";
-import { reactive } from "vue";
+import { ref, computed, onMounted } from "vue";
 
-const slideImages = reactive([
+// Using ref for the slide images
+const slideImages = ref([
   require("/src/assets/logo/cover.png"),
   require("/src/assets/logo/cover.png"),
   require("/src/assets/logo/cover.png"),
 ]);
-const products = reactive([
-  {
-    imageSrc: require("/src/assets/logo/justC.png"),
-    title: "Apple Watch Series 7 GPS",
-    price: "$599",
-    productLink: "#",
-  },
-  {
-    imageSrc: require("/src/assets/logo/cover.png"),
-    title: "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
-    price: "$599",
-    discountPrice: "$699",
-    productLink: "#",
-  },
-  {
-    imageSrc: require("/src/assets/logo/whiteLogo.png"),
-    title: "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
-    price: "$599",
-    discountPrice: "$699",
-    productLink: "#",
-  },
-  {
-    imageSrc: require("/src/assets/logo/whiteLogo.png"),
-    title: "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
-    price: "$599",
-    discountPrice: "$699",
-    productLink: "#",
-  },
-  {
-    imageSrc: require("/src/assets/logo/justC.png"),
-    title: "Apple Watch Series 7 GPS",
-    price: "$599",
-    productLink: "#",
-  },
-  {
-    imageSrc: require("/src/assets/logo/cover.png"),
-    title: "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
-    price: "$599",
-    discountPrice: "$699",
-    productLink: "#",
-  },
-  {
-    imageSrc: require("/src/assets/logo/whiteLogo.png"),
-    title: "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
-    price: "$599",
-    discountPrice: "$699",
-    productLink: "#",
-  },
-  {
-    imageSrc: require("/src/assets/logo/whiteLogo.png"),
-    title: "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
-    price: "$599",
-    discountPrice: "$699",
-    productLink: "#",
-  },
-]);
+
+const products = ref([]);
+
+const loadProducts = async () => {
+  try {
+    const response = await fetch("/data.json");
+    const data = await response.json();
+    products.value = data;
+  } catch (error) {
+    console.error("Error loading products:", error);
+  }
+};
+
+// Computed property for filtering featured products
+const filteredProducts = computed(() => {
+  return products.value.filter(product => product.featured);
+});
+
+// Load products on component mount
+onMounted(() => {
+  loadProducts();
+});
 </script>
+
 <template>
   <div class="carousel-img">
     <div class="pb-[20px]">
@@ -81,12 +49,12 @@ const products = reactive([
         class="grid justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
         <ItemCard
-          v-for="(product, index) in products"
+          v-for="(product, index) in filteredProducts"
           :key="index"
-          :imageSrc="product.imageSrc"
-          :title="product.title"
+          :imageSrc="product.image"
+          :title="product.name"
           :price="product.price"
-          :discountPrice="product.discountPrice"
+          :discountPrice="product.discount"
           :productLink="product.productLink"
         />
       </div>

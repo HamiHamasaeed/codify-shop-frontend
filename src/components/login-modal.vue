@@ -64,7 +64,7 @@ function closeLogin() {
           <div class="mb-5">
             <label
               for="email"
-              class="block mb-2 text-sm font-medium text-gray-900"
+              class="block mb-2 text-md font-medium text-gray-900"
               >{{ t("email") }}</label
             >
             <input
@@ -78,7 +78,7 @@ function closeLogin() {
           <div class="mb-5">
             <label
               for="password"
-              class="block mb-2 text-sm font-medium text-gray-900"
+              class="block mb-2 text-md font-medium text-gray-900"
               >{{ t("password") }}</label
             >
             <input

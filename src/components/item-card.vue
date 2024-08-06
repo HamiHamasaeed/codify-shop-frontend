@@ -21,7 +21,7 @@
         </h5>
       </a>
       <div class="flex flex-row items-start justify-between mt-3 mb-2">
-        <span class="text-2xl font-bold text-sky-600">{{ price }}</span>
+        <span class="text-xl font-bold text-sky-600">{{ price }} IQD</span>
         <span
           v-if="discountPrice"
           class="text-base font-semibold text-gray-400 line-through mt-1"
@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps } from "vue";
 
 // Define props
 defineProps({
@@ -46,16 +46,15 @@ defineProps({
     required: true,
   },
   price: {
-    type: String,
+    type: Number,
     required: true,
   },
   discountPrice: {
-    type: String,
+    type: Number,
     required: false,
   },
   productLink: {
     type: String,
-    required: true,
   },
 });
 </script>
