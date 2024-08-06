@@ -209,7 +209,7 @@ const hideModal = () => {
 
       <div
         :class="{ hidden: !isTopOpen, block: isTopOpen }"
-        class="items-center justify-between w-full md:flex md:w-auto md:order-1"
+        class="items-center justify-between w-full md:flex md:w-auto md:order-1 pl-8"
         id="navbar-sticky"
       >
         <ul

@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 // Importing views
-import Main from "../components/master/codify-main.vue";
-import Shop from "../components/shop/shop-page.vue";
-import Home from "../components/home/home-page.vue";
-import About from "../components/about/about-page.vue";
-import Projects from "../components/project/project-page.vue";
-import Systems from "../components/systems/systems-page.vue";
+import Main from "../views/master/codify-main.vue";
+import Shop from "../views/shop/shop-page.vue";
+import Home from "../views/home/home-page.vue";
+import About from "../views/about/about-page.vue";
+import Projects from "../views/project/project-page.vue";
+import Systems from "../views/systems/systems-page.vue";
 
 const routes = [
   {

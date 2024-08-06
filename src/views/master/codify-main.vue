@@ -1,6 +1,6 @@
 <script setup>
-import TopBar from "@/components/master/top-bar.vue";
-import TopBanner from "@/components/master/top-banner.vue";
+import TopBar from "@/views/master/top-bar.vue";
+import TopBanner from "@/views/master/top-banner.vue";
 </script>
 
 <template>
@@ -10,6 +10,9 @@ import TopBanner from "@/components/master/top-banner.vue";
     <div class="main-content">
       <router-view> </router-view>
     </div>
+    <div class="footer py-3 bg-[#37393d] text-white">
+      <p>© 2024 Codify. All rights reserved.</p>
+      </div>
   </div>
 </template>
 

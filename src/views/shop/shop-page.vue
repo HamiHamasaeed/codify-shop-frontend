@@ -1,6 +1,6 @@
 <script setup>
-import ItemCard from "../item-card.vue";
-import { reactive } from "vue";
+import ItemCard from "@/components/item-card.vue";
+import { reactive, ref } from "vue";
 
 const products = reactive([
   {
@@ -85,12 +85,21 @@ const products = reactive([
     productLink: "#",
   },
 ]);
+
+const isDropdownOpen = ref(false);
+
+const toggleDropdown = () => {
+  isDropdownOpen.value = !isDropdownOpen.value;
+};
+
 </script>
 
 <template>
   <div class="my-background">
     <!-- Search bar container with sticky class -->
-    <div class= "sticky bg-white bg-opacity-85 top-[126px] z-10 shadow-sm rounded-lg">
+    <div
+      class="sticky bg-white bg-opacity-85 top-[126px] z-10 shadow-sm rounded-lg"
+    >
       <form class="max-w-3xl mx-auto p-4">
         <div class="flex">
           <button
@@ -98,6 +107,7 @@ const products = reactive([
             data-dropdown-toggle="dropdown"
             class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-3 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100"
             type="button"
+            @click="toggleDropdown"
           >
             All categories
             <svg
@@ -117,11 +127,12 @@ const products = reactive([
             </svg>
           </button>
           <div
+            v-if="isDropdownOpen"
             id="dropdown"
-            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+            class="absolute mt-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-[150px]"
           >
             <ul
-              class="py-2 text-md text-gray-700"
+              class="py-2 text-md  text-gray-700"
               aria-labelledby="dropdown-button"
             >
               <li>
@@ -212,7 +223,7 @@ const products = reactive([
 
 <style>
 .my-background {
-  padding: 30px 15% 20px 15%;
+  padding: 20px 15% 20px 15%;
 }
 
 @media (max-width: 768px) {

@@ -1,6 +1,6 @@
 <script setup>
 import Carousel from "./carousel-home.vue";
-import ItemCard from "../item-card.vue";
+import ItemCard from "@/components/item-card.vue";
 import { reactive } from "vue";
 
 const slideImages = reactive([
