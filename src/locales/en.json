@@ -1,9 +1,22 @@
 {
+  "welcome":"Welcome to Codify Store",
   "home": "Home",
   "shop": "Shop",
   "projects": "Projects",
   "systems": "Systems",
   "about": "About",
   "kurdish": "Kurdish",
-  "english": "English"
+  "english": "English",
+  "all":"All Categories",
+  "boards":"Boards",
+  "sensors":"Sensors",
+  "drivers":"Drivers",
+  "wires":"Wires",
+  "kits":"Kits",
+  "3d":"3D Printered",
+  "accessories":"Accessories",
+  "login":"Login",
+  "email":"Email",
+  "password":"Password",
+  "search":"Search"
 }

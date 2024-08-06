@@ -1,6 +1,7 @@
 <script setup>
 import ItemCard from "@/components/item-card.vue";
 import { reactive, ref } from "vue";
+import { useI18n } from "vue-i18n";
 
 const products = reactive([
   {
@@ -85,13 +86,12 @@ const products = reactive([
     productLink: "#",
   },
 ]);
-
+const { t } = useI18n();
 const isDropdownOpen = ref(false);
 
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 };
-
 </script>
 
 <template>
@@ -109,7 +109,7 @@ const toggleDropdown = () => {
             type="button"
             @click="toggleDropdown"
           >
-            All categories
+            {{ t("all") }}
             <svg
               class="w-3 h-3 ms-3"
               aria-hidden="true"
@@ -129,10 +129,10 @@ const toggleDropdown = () => {
           <div
             v-if="isDropdownOpen"
             id="dropdown"
-            class="absolute mt-12 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-[150px]"
+            class="absolute mt-14 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-[150px]"
           >
             <ul
-              class="py-2 text-md  text-gray-700"
+              class="py-2 text-sm text-gray-700"
               aria-labelledby="dropdown-button"
             >
               <li>
@@ -140,7 +140,7 @@ const toggleDropdown = () => {
                   type="button"
                   class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
                 >
-                  Mockups
+                  {{ t("boards") }}
                 </button>
               </li>
               <li>
@@ -148,7 +148,7 @@ const toggleDropdown = () => {
                   type="button"
                   class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
                 >
-                  Templates
+                  {{ t("sensors") }}
                 </button>
               </li>
               <li>
@@ -156,7 +156,7 @@ const toggleDropdown = () => {
                   type="button"
                   class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
                 >
-                  Design
+                  {{ t("drivers") }}
                 </button>
               </li>
               <li>
@@ -164,7 +164,31 @@ const toggleDropdown = () => {
                   type="button"
                   class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
                 >
-                  Logos
+                  {{ t("wires") }}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
+                >
+                  {{ t("kits") }}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
+                >
+                  {{ t("3d") }}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
+                >
+                  {{ t("accessories") }}
                 </button>
               </li>
             </ul>
@@ -173,8 +197,8 @@ const toggleDropdown = () => {
             <input
               type="search"
               id="search-dropdown"
-              class="block p-2.5 w-full z-20 text-lg text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-gray-500 focus:border-gray-500"
-              placeholder="Search..."
+              class="block p-2.5 w-full z-20 text-lg text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-30"
+              :placeholder="t('search')"
               required
             />
             <button

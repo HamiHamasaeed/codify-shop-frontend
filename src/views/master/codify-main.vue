@@ -1,11 +1,14 @@
 <script setup>
 import TopBar from "@/views/master/top-bar.vue";
 import TopBanner from "@/views/master/top-banner.vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 </script>
 
 <template>
   <div id="app">
-    <TopBanner title="Welcome to Codify Store" />
+    <TopBanner :title=  "t('welcome') " />
     <TopBar />
     <div class="main-content">
       <router-view> </router-view>

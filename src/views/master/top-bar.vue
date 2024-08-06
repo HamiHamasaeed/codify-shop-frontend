@@ -4,14 +4,16 @@ import { ref, onBeforeUnmount, onBeforeMount, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { config } from "@/config.js";
 import Modal from "@/components/codify-modal.vue";
+import LoginModal from "@/components/login-modal.vue";
 
 const shopStore = useShopStore();
 const { t, locale } = useI18n();
-const selectedLanguage = ref(locale.value); 
+const selectedLanguage = ref(locale.value);
 const isTopOpen = ref(false);
 const isSmallScreen = ref(window.innerWidth < 768);
 const isDropdownOpen = ref(false);
 const modalActive = ref(false);
+const loginActive = ref(false);
 const languageNames = ref({
   en: "English",
   ku: "کوردی",
@@ -34,7 +36,6 @@ const changeLanguage = (lang) => {
   locale.value = lang;
   isDropdownOpen.value = false; // Close the dropdown after selecting a language
   fetchData(lang); // Fetch data again with the new locale
-
 };
 
 const toggleDropdown = () => {
@@ -49,7 +50,6 @@ const imageUrl = computed(() =>
 
 //  const name = computed(() => shop.value ? shop.value.name : "");
 
-
 // Lifecycle hooks
 const fetchData = async (lang) => {
   console.log("Fetching shop data...");
@@ -59,7 +59,6 @@ const fetchData = async (lang) => {
     console.error("Failed to fetch shop data:", error);
   }
 };
-
 
 onBeforeMount(async () => {
   window.addEventListener("resize", handleSize);
@@ -78,11 +77,18 @@ const handleClick = () => {
 
 const showModal = () => {
   modalActive.value = true;
-  console.log(imageUrl.value);
 };
 
 const hideModal = () => {
   modalActive.value = false;
+};
+
+const hideLogin = () => {
+  loginActive.value = false;
+};
+
+const showLogin = () => {
+  loginActive.value = true;
 };
 </script>
 
@@ -101,10 +107,10 @@ const hideModal = () => {
   <Modal
     @close-modal="hideModal"
     :modalActive="modalActive"
-    :desc=shop.description
-    :phoneOne= shop.phone
-    :phoneTwo=shop.phoneTwo
-    :address= shop.address
+    :desc="shop.description"
+    :phoneOne="shop.phone"
+    :phoneTwo="shop.phoneTwo"
+    :address="shop.address"
     email="codify.iq@gmail.com"
     fb="https://www.facebook.com/Codify.iq/"
     insta="https://www.instagram.com/codify.iq/"
@@ -113,8 +119,9 @@ const hideModal = () => {
     github="https://github.com/bros4technology"
     :imgLogo="imageUrl"
   />
+  <LoginModal :loginActive="loginActive" @close-login="hideLogin" />
 
-  <nav class="new bg-[#37393d]  fixed w-full z-20 top-0 start-0 top-bar">
+  <nav class="new bg-[#37393d] fixed w-full z-20 top-0 start-0 top-bar">
     <div
       class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
     >
@@ -157,6 +164,7 @@ const hideModal = () => {
 
           <!-- Updated Person Icon -->
           <ion-icon
+            @click="showLogin"
             class="text-white text-4xl cursor-pointer hover:text-blue-400 transition-transform transform hover:scale-110"
             name="person-circle-outline"
           ></ion-icon>
