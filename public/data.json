@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "name": "Arduino Uno R3",
     "code": "ARDU001",
     "description": "Arduino Uno R3 microcontroller board based on the ATmega328P.",
@@ -13,6 +14,7 @@
     "featured": true
   },
   {
+    "id": "2",
     "name": "Raspberry Pi 4 Model B",
     "code": "RPI4001",
     "description": "Raspberry Pi 4 Model B with 4GB RAM, powerful ARM Cortex-A72 processor.",
@@ -25,6 +27,7 @@
     "featured": true
   },
   {
+    "id": "3",
     "name": "Arduino Nano",
     "code": "ARDU002",
     "description": "Arduino Nano microcontroller board with small form factor.",
@@ -37,6 +40,7 @@
     "featured": true
   },
   {
+    "id": "4",
     "name": "Raspberry Pi Camera Module V2",
     "code": "RPI4002",
     "description": "High-quality camera module for Raspberry Pi.",
@@ -48,6 +52,7 @@
     "price": 45000
   },
   {
+    "id": "5",
     "name": "Arduino Mega 2560",
     "code": "ARDU003",
     "description": "Arduino Mega 2560 microcontroller board with more pins and memory.",
@@ -61,6 +66,7 @@
     "featured": true
   },
   {
+    "id": "6",
     "name": "Raspberry Pi Zero W",
     "code": "RPI4003",
     "description": "Raspberry Pi Zero W with built-in WiFi and Bluetooth.",
@@ -72,6 +78,7 @@
     "price": 25000
   },
   {
+    "id": "7",
     "name": "Arduino Motor Shield",
     "code": "ARDU004",
     "description": "Motor shield for Arduino to control motors.",
@@ -83,6 +90,7 @@
     "price": 20000
   },
   {
+    "id": "8",
     "name": "Raspberry Pi Sense HAT",
     "code": "RPI4004",
     "description": "Sense HAT for Raspberry Pi with sensors and LED matrix.",
@@ -95,6 +103,7 @@
     "featured": true
   },
   {
+    "id": "9",
     "name": "Arduino Starter Kit",
     "code": "ARDU005",
     "description": "Starter kit for Arduino beginners with various components.",
@@ -106,6 +115,7 @@
     "price": 70000
   },
   {
+    "id": "10",
     "name": "Raspberry Pi 3 Model B+",
     "code": "RPI4005",
     "description": "Raspberry Pi 3 Model B+ with improved processing power.",
@@ -118,6 +128,7 @@
     "featured": true
   },
   {
+    "id": "11",
     "name": "Arduino MKR WiFi 1010",
     "code": "ARDU006",
     "description": "Arduino MKR WiFi 1010 with WiFi and Bluetooth connectivity.",
@@ -129,6 +140,7 @@
     "price": 45000
   },
   {
+    "id": "12",
     "name": "Raspberry Pi GPIO Expansion Board",
     "code": "RPI4006",
     "description": "Expansion board to extend Raspberry Pi GPIO pins.",
@@ -140,6 +152,7 @@
     "price": 15000
   },
   {
+    "id": "13",
     "name": "Arduino Sensor Kit",
     "code": "ARDU007",
     "description": "Sensor kit for Arduino with various sensors.",
@@ -152,6 +165,7 @@
     "discount": 45000
   },
   {
+    "id": "14",
     "name": "Raspberry Pi 4 Case",
     "code": "RPI4007",
     "description": "Protective case for Raspberry Pi 4.",
@@ -163,6 +177,7 @@
     "price": 10000
   },
   {
+    "id": "15",
     "name": "Arduino Ethernet Shield",
     "code": "ARDU008",
     "description": "Ethernet shield for Arduino to enable network connectivity.",
@@ -174,6 +189,7 @@
     "price": 35000
   },
   {
+    "id": "16",
     "name": "Raspberry Pi Touch Display",
     "code": "RPI4008",
     "description": "Touchscreen display for Raspberry Pi.",
@@ -186,6 +202,7 @@
     "featured": true
   },
   {
+    "id": "17",
     "name": "Arduino Proto Shield",
     "code": "ARDU009",
     "description": "Prototyping shield for Arduino.",
@@ -197,6 +214,7 @@
     "price": 20000
   },
   {
+    "id": "18",
     "name": "Raspberry Pi Power Supply",
     "code": "RPI4009",
     "description": "Official power supply for Raspberry Pi.",
@@ -208,6 +226,7 @@
     "price": 15000
   },
   {
+    "id": "19",
     "name": "Arduino LCD Display",
     "code": "ARDU010",
     "description": "LCD display for Arduino projects.",
@@ -219,6 +238,7 @@
     "price": 25000
   },
   {
+    "id": "20",
     "name": "Raspberry Pi Pico",
     "code": "RPI4010",
     "description": "Raspberry Pi Pico microcontroller board.",

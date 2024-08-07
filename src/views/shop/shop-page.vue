@@ -1,61 +1,9 @@
-<script setup>
-import ItemCard from "@/components/item-card.vue";
-import { ref, computed, onMounted } from "vue";
-import { useI18n } from "vue-i18n";
-
-const products = ref([]);
-const selectedCategory = ref("all");
-const searchQuery = ref("");
-
-const { t } = useI18n();
-const isDropdownOpen = ref(false);
-
-const toggleDropdown = () => {
-  isDropdownOpen.value = !isDropdownOpen.value;
-};
-
-const loadProducts = async () => {
-  try {
-    const response = await fetch("/data.json");
-    const data = await response.json();
-    products.value = data;
-  } catch (error) {
-    console.error("Error loading products:", error);
-  }
-};
-
-const filteredProducts = computed(() => {
-  let filtered = products.value;
-
-  if (selectedCategory.value !== "all") {
-    filtered = filtered.filter(product =>
-      product.categories.includes(selectedCategory.value)
-    );
-  }
-  
-  if (searchQuery.value) {
-    filtered = filtered.filter(product =>
-      product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-    );
-  }
-
-  return filtered;
-});
-
-onMounted(() => {
-  loadProducts();
-});
-
-const selectCategory = (category) => {
-  selectedCategory.value = category;
-  toggleDropdown();
-};
-</script>
-
 <template>
   <div class="my-background">
     <!-- Search bar container with sticky class -->
-    <div class="sticky bg-white bg-opacity-85 top-[126px] z-10 shadow-sm rounded-lg">
+    <div
+      class="sticky bg-white bg-opacity-85 top-[126px] z-10 shadow-sm rounded-lg"
+    >
       <form class="max-w-3xl mx-auto p-4">
         <div class="flex">
           <button
@@ -87,7 +35,10 @@ const selectCategory = (category) => {
             id="dropdown"
             class="absolute mt-14 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-[150px]"
           >
-            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdown-button">
+            <ul
+              class="py-2 text-sm text-gray-700"
+              aria-labelledby="dropdown-button"
+            >
               <li>
                 <button
                   type="button"
@@ -198,20 +149,76 @@ const selectCategory = (category) => {
     </div>
 
     <div class="container mx-auto py-8">
-      <div class="grid justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div
+        class="grid justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      >
         <ItemCard
-          v-for="(product, index) in filteredProducts"
-          :key="index"
+          v-for="product in filteredProducts"
+          :key="product.id"
           :imageSrc="product.image"
           :title="product.name"
           :price="product.price"
           :discountPrice="product.discount"
-          :productLink="product.link"
+          :productId="product.id"
         />
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import ItemCard from "@/components/item-card.vue";
+import { ref, computed, onMounted } from "vue";
+import { useI18n } from "vue-i18n";
+
+const products = ref([]);
+const selectedCategory = ref("all");
+const searchQuery = ref("");
+
+const { t } = useI18n();
+const isDropdownOpen = ref(false);
+
+const toggleDropdown = () => {
+  isDropdownOpen.value = !isDropdownOpen.value;
+};
+
+const loadProducts = async () => {
+  try {
+    const response = await fetch("/data.json");
+    const data = await response.json();
+    products.value = data;
+  } catch (error) {
+    console.error("Error loading products:", error);
+  }
+};
+
+const filteredProducts = computed(() => {
+  let filtered = products.value;
+
+  if (selectedCategory.value !== "all") {
+    filtered = filtered.filter((product) =>
+      product.categories.includes(selectedCategory.value)
+    );
+  }
+
+  if (searchQuery.value) {
+    filtered = filtered.filter((product) =>
+      product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    );
+  }
+
+  return filtered;
+});
+
+onMounted(() => {
+  loadProducts();
+});
+
+const selectCategory = (category) => {
+  selectedCategory.value = category;
+  toggleDropdown();
+};
+</script>
 
 <style>
 .my-background {

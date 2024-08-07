@@ -49,13 +49,13 @@ onMounted(() => {
         class="grid justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
         <ItemCard
-          v-for="(product, index) in filteredProducts"
-          :key="index"
+        v-for="product in filteredProducts"
+          :key="product.id"
           :imageSrc="product.image"
           :title="product.name"
           :price="product.price"
           :discountPrice="product.discount"
-          :productLink="product.productLink"
+          :productId="product.id"
         />
       </div>
     </div>
