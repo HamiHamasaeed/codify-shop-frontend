@@ -11,9 +11,7 @@
       />
     </div>
     <div class="px-5 pb-5 flex flex-col justify-between h-full">
-      <h5
-        class="pt-5 text-lg font-semibold tracking-tight text-gray-900 text-left"
-      >
+      <h5 class="pt-5 text-lg font-semibold tracking-tight text-gray-900 text-left">
         {{ title }}
       </h5>
       <div class="flex flex-row items-start justify-between mt-3 mb-2">
@@ -21,8 +19,9 @@
         <span
           v-if="discountPrice"
           class="text-base font-semibold text-gray-400 line-through mt-1"
-          >{{ discountPrice }}</span
         >
+          {{ discountPrice }}
+        </span>
       </div>
     </div>
   </div>
@@ -34,6 +33,10 @@ import { useRouter } from 'vue-router';
 
 // Define props
 const props = defineProps({
+  shopId: {
+    type: String,
+    required: true,
+  },
   imageSrc: {
     type: String,
     required: true,
@@ -46,20 +49,57 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  discountPrice: {
-    type: Number,
-    required: false,
-  },
   productId: {
     type: [Number, String],
     required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  brand: {
+    type: String,
+    required: true,
+  },
+  condition: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  stock: {
+    type: Number,
+    required: true,
+  },
+  discount: {
+    type: Number,
+    required: false,
   }
 });
 
 const router = useRouter();
 
 const goToProductPage = () => {
-  router.push({ name: 'ProductItem', params: { id: props.productId } });
+  router.push({ 
+    name: 'ProductItem', 
+    params: { 
+      shopId: props.shopId, 
+      id: props.productId 
+    },
+    query: {
+      imageSrc: props.imageSrc,
+      title: props.title,
+      price: props.price,
+      description: props.description,
+      brand: props.brand,
+      condition: props.condition,
+      category: props.category,
+      stock: props.stock,
+      discount: props.discount
+    }
+  });
 };
 </script>
 

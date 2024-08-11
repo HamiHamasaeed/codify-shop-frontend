@@ -1,49 +1,69 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from "vue-router";
 
 // Importing views
-import Main from '../views/master/codify-main.vue';
-import Shop from '../views/shop/shop-page.vue';
-import Home from '../views/home/home-page.vue';
-import About from '../views/about/about-page.vue';
-import Projects from '../views/project/project-page.vue';
-import Systems from '../views/systems/systems-page.vue';
-import ProductItem from '../views/shop/product-item.vue';
+import Main from "../views/master/codify-main.vue";
+import Shop from "../views/shop/shop-page.vue";
+import Home from "../views/home/home-page.vue";
+import About from "../views/about/about-page.vue";
+import Projects from "../views/project/project-page.vue";
+import Systems from "../views/systems/systems-page.vue";
+import ProductItem from "../views/shop/product-item.vue";
+import Stores from "../views/stores/stores-view.vue";
 
 const routes = [
   {
-    name: 'main',
-    path: '/',
+    name: "main",
+    path: "/",
     component: Main,
     children: [
       {
-        name: 'home',
-        path: '', // Use relative path for child routes
+        name: "home",
+        path: "", // Use relative path for child routes
         component: Home,
       },
       {
-        name: 'shop',
-        path: 'shop', // Use relative path for child routes
-        component: Shop,
+        path: "stores",
+        name: "stores",
+        component: Stores,
+        props: true,
       },
       {
-        name: 'projects',
-        path: 'projects', // Use relative path for child routes
+        name: "projects",
+        path: "projects", // Use relative path for child routes
         component: Projects,
       },
       {
-        name: 'systems',
-        path: 'systems', // Use relative path for child routes
+        name: "systems",
+        path: "systems", // Use relative path for child routes
         component: Systems,
       },
       {
-        name: 'about',
-        path: 'about', // Use relative path for child routes
+        name: "about",
+        path: "about", // Use relative path for child routes
         component: About,
       },
       {
-        path: 'product/:id',
-        name: 'ProductItem',
+        path: "product/:id",
+        name: "ProductItem",
         component: ProductItem,
+        props: route => ({
+          id: route.params.id,
+          shopId: route.query.shopId,
+          imageSrc: route.query.imageSrc,
+          title: route.query.title,
+          price: route.query.price,
+          description: route.query.description,
+          brand: route.query.brand,
+          condition: route.query.condition,
+          category: route.query.category,
+          stock: route.query.stock,
+          discount: route.query.discount
+        })
+      },
+      {
+        name: "shop",
+        path: "shop/:shopId?", // Use relative path for child routes
+        component: Shop,
         props: true,
       },
     ],

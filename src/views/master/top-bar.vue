@@ -239,7 +239,7 @@ const showLogin = () => {
               { spaceP: isTopOpen },
             ]"
           >
-            <router-link @click="handleClick" to="/shop">
+            <router-link @click="handleClick" to="/stores">
               {{ t("shop") }}
             </router-link>
           </li>

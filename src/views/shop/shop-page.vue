@@ -8,7 +8,6 @@
         <div class="flex">
           <button
             id="dropdown-button"
-            data-dropdown-toggle="dropdown"
             class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-3 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100"
             type="button"
             @click="toggleDropdown"
@@ -32,83 +31,16 @@
           </button>
           <div
             v-if="isDropdownOpen"
-            id="dropdown"
             class="absolute mt-14 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-[150px]"
           >
-            <ul
-              class="py-2 text-sm text-gray-700"
-              aria-labelledby="dropdown-button"
-            >
-              <li>
+            <ul class="py-2 text-sm text-gray-700">
+              <li v-for="category in categories" :key="category">
                 <button
                   type="button"
                   class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
-                  @click="selectCategory('all')"
+                  @click="selectCategory(category)"
                 >
-                  {{ t("all") }}
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
-                  @click="selectCategory('boards')"
-                >
-                  {{ t("boards") }}
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
-                  @click="selectCategory('sensors')"
-                >
-                  {{ t("sensors") }}
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
-                  @click="selectCategory('drivers')"
-                >
-                  {{ t("drivers") }}
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
-                  @click="selectCategory('wires')"
-                >
-                  {{ t("wires") }}
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
-                  @click="selectCategory('kits')"
-                >
-                  {{ t("kits") }}
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
-                  @click="selectCategory('3d')"
-                >
-                  {{ t("3d") }}
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
-                  @click="selectCategory('accessories')"
-                >
-                  {{ t("accessories") }}
+                  {{ t(category) }}
                 </button>
               </li>
             </ul>
@@ -116,8 +48,7 @@
           <div class="relative w-full">
             <input
               type="search"
-              id="search-dropdown"
-              class="block p-2.5 w-full z-20 text-lg text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-30"
+              class="block p-2.5 w-full z-20 text-lg text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300"
               :placeholder="t('search')"
               v-model="searchQuery"
               required
@@ -153,13 +84,18 @@
         class="grid justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
         <ItemCard
-          v-for="product in filteredProducts"
+          v-for="product in filtereditems"
           :key="product.id"
           :imageSrc="product.image"
           :title="product.name"
           :price="product.price"
-          :discountPrice="product.discount"
           :productId="product.id"
+          :shopId="route.params.shopId"
+          :condition="product.condition"
+          :brand="product.brand"
+          :category="product.category"
+          :description="product.description"
+          :stock="product.stock"
         />
       </div>
     </div>
@@ -169,40 +105,61 @@
 <script setup>
 import ItemCard from "@/components/item-card.vue";
 import { ref, computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 
-const products = ref([]);
+const items = ref([]);
 const selectedCategory = ref("all");
 const searchQuery = ref("");
-
+const route = useRoute();
 const { t } = useI18n();
 const isDropdownOpen = ref(false);
 
+const categories = [
+  "all",
+  "boards",
+  "sensors",
+  "drivers",
+  "wires",
+  "kits",
+  "3d",
+  "accessories"
+];
+
+// Toggle dropdown visibility
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 };
 
-const loadProducts = async () => {
+// Load items from the JSON file
+const loaditems = async () => {
   try {
-    const response = await fetch("/data.json");
+    const response = await fetch("/shops.json");
     const data = await response.json();
-    products.value = data;
+    const shopId = route.params.shopId;
+    if (shopId === "all") {
+      items.value = data.flatMap(shop => shop.items);
+    } else {
+      const shop = data.find(shop => shop.id === shopId);
+      items.value = shop ? shop.items : [];
+    }
   } catch (error) {
-    console.error("Error loading products:", error);
+    console.error("Error loading items:", error);
   }
 };
 
-const filteredProducts = computed(() => {
-  let filtered = products.value;
+// Filter items based on category and search query
+const filtereditems = computed(() => {
+  let filtered = items.value;
 
   if (selectedCategory.value !== "all") {
-    filtered = filtered.filter((product) =>
-      product.categories.includes(selectedCategory.value)
+    filtered = filtered.filter(product =>
+      product.category === selectedCategory.value
     );
   }
 
   if (searchQuery.value) {
-    filtered = filtered.filter((product) =>
+    filtered = filtered.filter(product =>
       product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
     );
   }
@@ -211,9 +168,10 @@ const filteredProducts = computed(() => {
 });
 
 onMounted(() => {
-  loadProducts();
+  loaditems();
 });
 
+// Handle category selection
 const selectCategory = (category) => {
   selectedCategory.value = category;
   toggleDropdown();

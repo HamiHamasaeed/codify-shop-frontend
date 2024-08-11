@@ -12,7 +12,6 @@ export const useShopStore = defineStore("shop", {
         const apiKey =
           "e48ceba2f6a15f63bf70ad8b3082642f613598f027facaea3c6eeae7399fa9e005453fc1597c9901bcc2cc535bb5a9c90ed55049244b39d8fe1612536ad5be44"; // Replace with actual API key
         const apiUrl = `${config.backendURL}/api/v1/shop/1`; // Correct API endpoint
-
         const response = await fetch(apiUrl, {
           method: "GET",
           headers: {
@@ -34,8 +33,8 @@ export const useShopStore = defineStore("shop", {
 
         const data = await response.json();
 
-         if (data.message) {
-           console.log("Message from API:", data.message);
+        if (data.message) {
+          console.log("Message from API:", data.message);
         }
 
         this.shop = data.data; // Adjust based on actual response structure
