@@ -84,18 +84,15 @@
         class="grid justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
         <ItemCard
-          v-for="product in filtereditems"
-          :key="product.id"
-          :imageSrc="product.image"
-          :title="product.name"
-          :price="product.price"
-          :productId="product.id"
+          v-for="items in filtereditems"
+          :key="items.id"
+          :imageSrc="items.image"
+          :title="items.name"
+          :price="items.price"
+          :discount="items.discount"
+          :itemId="items.id"
           :shopId="route.params.shopId"
-          :condition="product.condition"
-          :brand="product.brand"
-          :category="product.category"
-          :description="product.description"
-          :stock="product.stock"
+          :categories="items.categories"
         />
       </div>
     </div>
@@ -123,7 +120,7 @@ const categories = [
   "wires",
   "kits",
   "3d",
-  "accessories"
+  "accessories",
 ];
 
 // Toggle dropdown visibility
@@ -138,9 +135,9 @@ const loaditems = async () => {
     const data = await response.json();
     const shopId = route.params.shopId;
     if (shopId === "all") {
-      items.value = data.flatMap(shop => shop.items);
+      items.value = data.flatMap((shop) => shop.items);
     } else {
-      const shop = data.find(shop => shop.id === shopId);
+      const shop = data.find((shop) => shop.id === shopId);
       items.value = shop ? shop.items : [];
     }
   } catch (error) {
@@ -153,14 +150,14 @@ const filtereditems = computed(() => {
   let filtered = items.value;
 
   if (selectedCategory.value !== "all") {
-    filtered = filtered.filter(product =>
-      product.category === selectedCategory.value
+    filtered = filtered.filter(
+      (items) => items.category === selectedCategory.value
     );
   }
 
   if (searchQuery.value) {
-    filtered = filtered.filter(product =>
-      product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    filtered = filtered.filter((items) =>
+      items.name.toLowerCase().includes(searchQuery.value.toLowerCase())
     );
   }
 

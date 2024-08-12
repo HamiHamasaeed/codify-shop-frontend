@@ -43,22 +43,10 @@ const routes = [
         component: About,
       },
       {
-        path: "product/:id",
+        path: "product/:itemId/:shopId?",
         name: "ProductItem",
         component: ProductItem,
-        props: route => ({
-          id: route.params.id,
-          shopId: route.query.shopId,
-          imageSrc: route.query.imageSrc,
-          title: route.query.title,
-          price: route.query.price,
-          description: route.query.description,
-          brand: route.query.brand,
-          condition: route.query.condition,
-          category: route.query.category,
-          stock: route.query.stock,
-          discount: route.query.discount
-        })
+        props: true,
       },
       {
         name: "shop",

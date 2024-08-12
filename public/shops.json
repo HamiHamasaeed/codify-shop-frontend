@@ -241,7 +241,7 @@
         "image": "https://thepihut.com/cdn/shop/products/rgb-16x2-lcd-display-i2c-3-3v-5v-waveshare-wav-19537-28628135575747_800x.jpg?v=1646218100",
         "brand": "arduino",
         "categories": ["accessories", "sensors"],
-        "stock": "60",
+        "stock": 60,
         "condition": "new",
         "price": 25000
       },
@@ -278,7 +278,7 @@
             "brand": "Dell",
             "condition": "New",
             "image": "https://static.toolmart.me/catalog/product/1/2/12gen_core_i7_1260p.jpg",
-            "category": "Laptops",
+            "categories": ["Laptops"],
             "stock": 75,
             "price": 1748898
           },
@@ -290,7 +290,7 @@
             "brand": "HP",
             "condition": "New",
             "image": "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c06149709.png",
-            "category": "Laptops",
+            "categories": ["Laptops"],
             "stock": 60,
             "price": 1561398,
             "discount": 60900,
@@ -305,7 +305,7 @@
             "brand": "Apple",
             "condition": "New",
             "image": "https://i.ebayimg.com/images/g/PVEAAOSwzcZk58y3/s-l1600.jpg",
-            "category": "Laptops",
+            "categories": ["Laptops"],
             "stock": 40,
             "price": 2991398,
             "discount": 122000
@@ -318,7 +318,7 @@
             "brand": "Lenovo",
             "condition": "New",
             "image": "https://p1-ofp.static.pub/fes/cms/2023/04/28/iu6t7jqpekoy7o76vbn0c9a9b7rbsb543440.png",
-            "category": "Laptops",
+            "categories": ["Laptops"],
             "stock": 55,
             "price": 1778898
           },
@@ -330,7 +330,7 @@
             "brand": "Asus",
             "condition": "New",
             "image": "https://dlcdnwebimgs.asus.com/gain/7583764C-92E3-413D-A5AD-4CB7D9713802/w1000/h732",
-            "category": "Laptops",
+            "categories": ["Laptops"],
             "stock": 70,
             "price": 2094398,
             "discount": 91800
@@ -343,7 +343,7 @@
             "brand": "Acer",
             "condition": "New",
             "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6514/6514374_sd.jpg",
-            "category": "Laptops",
+            "categories": ["Laptops"],
             "stock": 65,
             "price": 1925898,
             "discount": 60900
@@ -356,7 +356,7 @@
             "brand": "Microsoft",
             "condition": "New",
             "image": "https://i5.walmartimages.com/asr/f98ea0a2-7f2d-4b55-90fd-383027e8a97b.1c5d5e5b5c91f8f3edae9cc0551613ab.jpeg",
-            "category": "Laptops",
+            "categories": ["Laptops"],
             "stock": 80,
             "price": 1240898
           },
@@ -368,7 +368,7 @@
             "brand": "Samsung",
             "condition": "New",
             "image": "https://images.samsung.com/is/image/samsung/p6pim/hk_en/galaxy-book/feature/hk_en-feature-thin-as-a-smartphone--powerful-as-a-pc-430930566?$FB_TYPE_A_MO_JPG$",
-            "category": "Laptops",
+            "categories": ["Laptops"],
             "stock": 55,
             "price": 1778898,
             "discount": 122000,
@@ -382,7 +382,7 @@
             "brand": "Razer",
             "condition": "New",
             "image": "https://www.notebookcheck.net/uploads/tx_nbc2/4zu3_Razer_Blade_15_Advanced_Model_2020.jpg",
-            "category": "Laptops",
+            "categories": ["Laptops"],
             "stock": 45,
             "price": 2295898,
             "discount": 183000,
@@ -396,7 +396,7 @@
             "brand": "HP",
             "condition": "New",
             "image": "https://www.notebookcheck.net/uploads/tx_nbc2/2R252EA-ABE_500x367_02.jpg",
-            "category": "Laptops",
+            "categories": ["Laptops"],
             "stock": 75,
             "price": 1240898
           }
@@ -421,7 +421,7 @@
           "brand": "Apple",
           "condition": "New",
           "image": "https://cdn.dxomark.com/wp-content/uploads/medias/post-125834/Apple-iPhone-14_FINAL_featured-image-packshot-review-1024x691.jpg",
-          "category": "Smartphones",
+          "categories": ["Smartphones"],
           "stock": 120,
           "price": 1459000
         },
@@ -433,7 +433,7 @@
           "brand": "Samsung",
           "condition": "New",
           "image": "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/2202/gallery/levant-ar-galaxy-s22-s901-412895-sm-s901ezkgmea-530961426?$650_519_PNG$",
-          "category": "Smartphones",
+          "categories": ["Smartphones"],
           "stock": 100,
           "price": 1313399,
           "discount": 73000,
@@ -447,7 +447,7 @@
           "brand": "Google",
           "condition": "New",
           "image": "https://m.media-amazon.com/images/I/7173p0j-mbL.jpg",
-          "category": "Smartphones",
+          "categories": ["Smartphones"],
           "stock": 80,
           "price": 1166398,
           "discount": 0
@@ -460,7 +460,7 @@
           "brand": "OnePlus",
           "condition": "New",
           "image": "https://oasis.opstatics.com/content/dam/oasis/page/2022/operation/mar/0317/EU-IN_Green.png",
-          "category": "Smartphones",
+          "categories": ["Smartphones"],
           "stock": 90,
           "price": 1385498,
           "discount": 43800,
@@ -474,7 +474,7 @@
           "brand": "Sony",
           "condition": "New",
           "image": "https://sony.scene7.com/is/image/sonyglobalsolutions/PDX-224_Primary-Image_Green_hyperc?$S7Product$&fmt=png-alpha",
-          "category": "Smartphones",
+          "categories": ["Smartphones"],
           "stock": 70,
           "price": 1459000
         },
@@ -486,7 +486,7 @@
           "brand": "Xiaomi",
           "condition": "New",
           "image": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1619082747.31483931!400x400!85.png",
-          "category": "Smartphones",
+          "categories": ["Smartphones"],
           "stock": 85,
           "price": 1239398,
           "discount": 58400
@@ -499,7 +499,7 @@
           "brand": "Oppo",
           "condition": "New",
           "image": "https://cdn.dxomark.com/wp-content/uploads/medias/post-110100/Oppo-Find-X5-Pro-featured-image-packshot-review-Recovered.jpg",
-          "category": "Smartphones",
+          "categories": ["Smartphones"],
           "stock": 60,
           "price": 1459000
         },
@@ -511,7 +511,7 @@
           "brand": "Huawei",
           "condition": "New",
           "image": "https://cdn.dxomark.com/wp-content/uploads/medias/post-88973/featured_huaweip50pro.jpg",
-          "category": "Smartphones",
+          "categories": ["Smartphones"],
           "stock": 50,
           "price": 1459000,
           "discount": 73000,
@@ -525,7 +525,7 @@
           "brand": "Motorola",
           "condition": "New",
           "image": "https://motorolamy.vtexassets.com/arquivos/ids/155437-800-auto?width=800&height=auto&aspect=true",
-          "category": "Smartphones",
+          "categories": ["Smartphones"],
           "stock": 65,
           "price": 1313399
         },
@@ -537,7 +537,7 @@
           "brand": "Nokia",
           "condition": "New",
           "image": "https://external-preview.redd.it/BLID5hh68gl1hVt-1sLmgJp4W_K_fRfJGiLYRJJ1MtY.jpg?width=640&crop=smart&auto=webp&s=bd64ae93811a242b32e83d974f165e81e76fd7dc",
-          "category": "Smartphones",
+          "categories": ["Smartphones"],
           "stock": 90,
           "price": 1019398,
           "discount": 29200

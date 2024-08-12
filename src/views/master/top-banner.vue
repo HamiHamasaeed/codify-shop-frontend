@@ -1,9 +1,6 @@
 <!-- src/components/TopBanner.vue -->
 <template>
-  <div
-    :class="['top-banner ', { 'hidden-banner': isHidden }]"
-    :style="gradiantColor"
-  >
+  <div class="top-banner" :style="gradiantColor">
     <h1 class="font-bold">{{ title }}</h1>
   </div>
 </template>
@@ -24,8 +21,8 @@ export default {
       type: String,
       required: true,
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -39,6 +36,4 @@ export default {
   top: 0;
   z-index: 90;
 }
-
-
 </style>
