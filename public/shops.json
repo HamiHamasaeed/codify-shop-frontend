@@ -8,7 +8,8 @@
     "phone": "123-456-7890",
     "items": [
       {
-        "id": "1",
+        "id": 101,
+        "shopId": "1",
         "name": "Arduino Uno R3",
         "code": "ARDU001",
         "description": "Arduino Uno R3 microcontroller board based on the ATmega328P.",
@@ -22,8 +23,9 @@
         "featured": true
       },
       {
-        "id": "2",
+        "id": 102,
         "name": "Raspberry Pi 4 Model B",
+        "shopId": "1",
         "code": "RPI4001",
         "description": "Raspberry Pi 4 Model B with 4GB RAM, powerful ARM Cortex-A72 processor.",
         "image": "https://m.media-amazon.com/images/I/61rqWZwgAML._AC_UF1000,1000_QL80_.jpg",
@@ -35,8 +37,9 @@
         "featured": true
       },
       {
-        "id": "3",
+        "id": 103,
         "name": "Arduino Nano",
+        "shopId": "1",
         "code": "ARDU002",
         "description": "Arduino Nano microcontroller board with small form factor.",
         "image": "https://electropeak.com/pub/media/catalog/product/cache/95f75205f3b943f313b30831421df8c2/a/r/ard-01-025-1-nano-arduino-board.jpg",
@@ -48,9 +51,10 @@
         "featured": true
       },
       {
-        "id": "4",
+        "id": 104,
         "name": "Raspberry Pi Camera Module V2",
         "code": "RPI4002",
+        "shopId": "1",
         "description": "High-quality camera module for Raspberry Pi.",
         "image": "https://thepihut.com/cdn/shop/products/raspberry-pi-camera-module-v2-1-raspberry-pi-sc0023-30219474239683_1500x.jpg?v=1646380808",
         "brand": "raspberrypi",
@@ -60,9 +64,10 @@
         "price": 45000
       },
       {
-        "id": "5",
+        "id": 105,
         "name": "Arduino Mega 2560",
         "code": "ARDU003",
+        "shopId": "1",
         "description": "Arduino Mega 2560 microcontroller board with more pins and memory.",
         "image": "https://image.made-in-china.com/2f0j00PWdGAuloZfqh/Mega-2560-R3-Atmega2560-16au-Board-USB-Cable-Compatible-with-Arduino-IDE.webp",
         "brand": "arduino",
@@ -74,9 +79,10 @@
         "featured": true
       },
       {
-        "id": "6",
+        "id": 106,
         "name": "Raspberry Pi Zero W",
         "code": "RPI4003",
+        "shopId": "1",
         "description": "Raspberry Pi Zero W with built-in WiFi and Bluetooth.",
         "image": "https://cdn.sparkfun.com/assets/parts/1/2/2/3/2/14277-01.jpg",
         "brand": "raspberrypi",
@@ -86,9 +92,10 @@
         "price": 25000
       },
       {
-        "id": "7",
+        "id": 107,
         "name": "Arduino Motor Shield",
         "code": "ARDU004",
+        "shopId": "1",
         "description": "Motor shield for Arduino to control motors.",
         "image": "https://m.media-amazon.com/images/I/51zj+dPfXVL.jpg",
         "brand": "arduino",
@@ -98,9 +105,10 @@
         "price": 20000
       },
       {
-        "id": "8",
+        "id": 108,
         "name": "Raspberry Pi Sense HAT",
         "code": "RPI4004",
+        "shopId": "1",
         "description": "Sense HAT for Raspberry Pi with sensors and LED matrix.",
         "image": "https://images.prismic.io/rpf-products/a222a1d657906db95efbca8b8467037fa1a89def_sense-hat-1733x1080-1-1733x1080.jpg?auto=compress%2Cformat&fit=max",
         "brand": "raspberrypi",
@@ -111,9 +119,10 @@
         "featured": true
       },
       {
-        "id": "9",
+        "id": 109,
         "name": "Arduino Starter Kit",
         "code": "ARDU005",
+        "shopId": "1",
         "description": "Starter kit for Arduino beginners with various components.",
         "image": "https://store.arduino.cc/cdn/shop/products/starterkit_02.unbox_934x700.jpg?v=1650614661",
         "brand": "arduino",
@@ -123,9 +132,10 @@
         "price": 70000
       },
       {
-        "id": "10",
+        "id": 110,
         "name": "Raspberry Pi 3 Model B+",
         "code": "RPI4005",
+        "shopId": "1",
         "description": "Raspberry Pi 3 Model B+ with improved processing power.",
         "image": "https://raspberrypi.dk/wp-content/uploads/2018/03/Raspberry-Pi-3-Model-BPlus.jpg",
         "brand": "raspberrypi",
@@ -136,9 +146,10 @@
         "featured": true
       },
       {
-        "id": "11",
+        "id": 111,
         "name": "Arduino MKR WiFi 1010",
         "code": "ARDU006",
+        "shopId": "1",
         "description": "Arduino MKR WiFi 1010 with WiFi and Bluetooth connectivity.",
         "image": "https://store.arduino.cc/cdn/shop/products/ABX00023_01.iso_934x700.jpg?v=1630488949",
         "brand": "arduino",
@@ -148,9 +159,10 @@
         "price": 45000
       },
       {
-        "id": "12",
+        "id": 112,
         "name": "Raspberry Pi GPIO Expansion Board",
         "code": "RPI4006",
+        "shopId": "1",
         "description": "Expansion board to extend Raspberry Pi GPIO pins.",
         "image": "https://robu.in/wp-content/uploads/2017/12/S11-5.jpg",
         "brand": "raspberrypi",
@@ -160,9 +172,10 @@
         "price": 15000
       },
       {
-        "id": "13",
+        "id": 113,
         "name": "Arduino Sensor Kit",
         "code": "ARDU007",
+        "shopId": "1",
         "description": "Sensor kit for Arduino with various sensors.",
         "image": "https://m.media-amazon.com/images/I/71q89VpVoUL._AC_UF1000,1000_QL80_.jpg",
         "brand": "arduino",
@@ -173,9 +186,10 @@
         "discount": 45000
       },
       {
-        "id": "14",
+        "id": 114,
         "name": "Raspberry Pi 4 Case",
         "code": "RPI4007",
+        "shopId": "1",
         "description": "Protective case for Raspberry Pi 4.",
         "image": "https://images.prismic.io/rpf-products%2F6526e7f1-84ba-4f2c-905b-17d3fb6e01df_copy+of+pi4_case_angle2.jpg?auto=compress%2Cformat&fit=max",
         "brand": "raspberrypi",
@@ -185,9 +199,10 @@
         "price": 10000
       },
       {
-        "id": "15",
+        "id": 115,
         "name": "Arduino Ethernet Shield",
         "code": "ARDU008",
+        "shopId": "1",
         "description": "Ethernet shield for Arduino to enable network connectivity.",
         "image": "https://cdn.soselectronic.com/productdata/08/ef/9fd959ec/arduino-ethernet-shield.jpg",
         "brand": "arduino",
@@ -197,9 +212,10 @@
         "price": 35000
       },
       {
-        "id": "16",
+        "id": 116,
         "name": "Raspberry Pi Touch Display",
         "code": "RPI4008",
+        "shopId": "1",
         "description": "Touchscreen display for Raspberry Pi.",
         "image": "https://www.makerlab-electronics.com/cdn/shop/products/7-raspberry-pi-touchscreen-lcd-display-2.jpg?v=1679473154&width=1445",
         "brand": "raspberrypi",
@@ -210,9 +226,10 @@
         "featured": true
       },
       {
-        "id": "17",
+        "id": 117,
         "name": "Arduino Proto Shield",
         "code": "ARDU009",
+        "shopId": "1",
         "description": "Prototyping shield for Arduino.",
         "image": "https://www.jsumo.com/arduino-protoshield-340-29-B.jpg",
         "brand": "arduino",
@@ -222,9 +239,10 @@
         "price": 20000
       },
       {
-        "id": "18",
+        "id": 118,
         "name": "Raspberry Pi Power Supply",
         "code": "RPI4009",
+        "shopId": "1",
         "description": "Official power supply for Raspberry Pi.",
         "image": "https://m.media-amazon.com/images/I/51cDDThzC1L.jpg",
         "brand": "raspberrypi",
@@ -234,21 +252,23 @@
         "price": 15000
       },
       {
-        "id": "19",
+        "id": 119,
         "name": "Arduino LCD Display",
         "code": "ARDU010",
         "description": "LCD display for Arduino projects.",
         "image": "https://thepihut.com/cdn/shop/products/rgb-16x2-lcd-display-i2c-3-3v-5v-waveshare-wav-19537-28628135575747_800x.jpg?v=1646218100",
         "brand": "arduino",
+        "shopId": "1",
         "categories": ["accessories", "sensors"],
         "stock": 60,
         "condition": "new",
         "price": 25000
       },
       {
-        "id": "20",
+        "id": 120,
         "name": "Raspberry Pi Pico",
         "code": "RPI4010",
+        "shopId": "1",
         "description": "Raspberry Pi Pico microcontroller board.",
         "image": "https://cdn11.bigcommerce.com/s-2fbyfnm8ev/images/stencil/1280x1280/products/1212/4275/Pico3__75642.1611086462.jpg?c=2",
         "brand": "raspberrypi",
@@ -274,6 +294,7 @@
             "id": 201,
             "code": "TW201",
             "name": "Dell XPS 13",
+            "shopId": "2",
             "description": "A high-performance laptop with Intel Core i7 processor and 16GB RAM.",
             "brand": "Dell",
             "condition": "New",
@@ -286,6 +307,7 @@
             "id": 202,
             "code": "TW202",
             "name": "HP Spectre x360",
+            "shopId": "2",
             "description": "A versatile 2-in-1 laptop with 8GB RAM and Intel Core i5 processor.",
             "brand": "HP",
             "condition": "New",
@@ -301,6 +323,7 @@
             "id": 203,
             "code": "TW203",
             "name": "Apple MacBook Pro 16\"",
+            "shopId": "2",
             "description": "A powerful laptop with M1 Pro chip and 32GB RAM.",
             "brand": "Apple",
             "condition": "New",
@@ -314,6 +337,7 @@
             "id": 204,
             "code": "TW204",
             "name": "Lenovo ThinkPad X1 Carbon",
+            "shopId": "2",
             "description": "A business-class laptop with Intel Core i7 and 16GB RAM.",
             "brand": "Lenovo",
             "condition": "New",
@@ -326,6 +350,7 @@
             "id": 205,
             "code": "TW205",
             "name": "Asus ROG Zephyrus G14",
+            "shopId": "2",
             "description": "A gaming laptop with AMD Ryzen 9 and 32GB RAM.",
             "brand": "Asus",
             "condition": "New",
@@ -339,6 +364,7 @@
             "id": 206,
             "code": "TW206",
             "name": "Acer Predator Helios 300",
+            "shopId": "2",
             "description": "A high-performance gaming laptop with Intel Core i7 and 16GB RAM.",
             "brand": "Acer",
             "condition": "New",
@@ -352,6 +378,7 @@
             "id": 207,
             "code": "TW207",
             "name": "Microsoft Surface Laptop 4",
+            "shopId": "2",
             "description": "A sleek laptop with Intel Core i5 and 8GB RAM.",
             "brand": "Microsoft",
             "condition": "New",
@@ -364,6 +391,7 @@
             "id": 208,
             "code": "TW208",
             "name": "Samsung Galaxy Book Pro",
+            "shopId": "2",
             "description": "A lightweight laptop with Intel Core i7 and 16GB RAM.",
             "brand": "Samsung",
             "condition": "New",
@@ -378,6 +406,7 @@
             "id": 209,
             "code": "TW209",
             "name": "Razer Blade 15",
+            "shopId": "2",
             "description": "A high-performance gaming laptop with Intel Core i7 and 16GB RAM.",
             "brand": "Razer",
             "condition": "New",
@@ -392,6 +421,7 @@
             "id": 210,
             "code": "TW210",
             "name": "HP Envy 13",
+            "shopId": "2",
             "description": "A sleek and stylish laptop with Intel Core i5 and 8GB RAM.",
             "brand": "HP",
             "condition": "New",
@@ -417,6 +447,7 @@
           "id": 301,
           "code": "GG301",
           "name": "Apple iPhone 14",
+          "shopId": "3",
           "description": "The latest iPhone with A15 Bionic chip and improved camera system.",
           "brand": "Apple",
           "condition": "New",
@@ -429,6 +460,7 @@
           "id": 302,
           "code": "GG302",
           "name": "Samsung Galaxy S22",
+          "shopId": "3",
           "description": "A high-end smartphone with AMOLED display and Snapdragon 888.",
           "brand": "Samsung",
           "condition": "New",
@@ -443,6 +475,7 @@
           "id": 303,
           "code": "GG303",
           "name": "Google Pixel 7",
+          "shopId": "3",
           "description": "A smartphone with Google Tensor chip and advanced AI features.",
           "brand": "Google",
           "condition": "New",
@@ -456,6 +489,7 @@
           "id": 304,
           "code": "GG304",
           "name": "OnePlus 10 Pro",
+          "shopId": "3",
           "description": "A flagship smartphone with Snapdragon 8 Gen 1 and Hasselblad camera.",
           "brand": "OnePlus",
           "condition": "New",
@@ -470,6 +504,7 @@
           "id": 305,
           "code": "GG305",
           "name": "Sony Xperia 5 IV",
+          "shopId": "3",
           "description": "A premium smartphone with 4K OLED display and advanced camera system.",
           "brand": "Sony",
           "condition": "New",
@@ -482,6 +517,7 @@
           "id": 306,
           "code": "GG306",
           "name": "Xiaomi Mi 11 Ultra",
+          "shopId": "3",
           "description": "A high-performance smartphone with a large AMOLED display and powerful camera.",
           "brand": "Xiaomi",
           "condition": "New",
@@ -495,6 +531,7 @@
           "id": 307,
           "code": "GG307",
           "name": "Oppo Find X5 Pro",
+          "shopId": "3",
           "description": "A flagship smartphone with Snapdragon 8 Gen 1 and 120Hz display.",
           "brand": "Oppo",
           "condition": "New",
@@ -507,6 +544,7 @@
           "id": 308,
           "code": "GG308",
           "name": "Huawei P50 Pro",
+          "shopId": "3",
           "description": "A high-end smartphone with Kirin 9000 chip and Leica camera system.",
           "brand": "Huawei",
           "condition": "New",
@@ -521,6 +559,7 @@
           "id": 309,
           "code": "GG309",
           "name": "Motorola Edge 30 Pro",
+          "shopId": "3",
           "description": "A flagship smartphone with Snapdragon 8 Gen 1 and 144Hz display.",
           "brand": "Motorola",
           "condition": "New",
@@ -533,6 +572,7 @@
           "id": 310,
           "code": "GG310",
           "name": "Nokia X20",
+          "shopId": "3",
           "description": "A reliable smartphone with a large display and 5G support.",
           "brand": "Nokia",
           "condition": "New",

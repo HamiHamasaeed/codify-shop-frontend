@@ -38,7 +38,7 @@
             'bg-red-200 text-red-800 max-w-28': foundItem.stock === 0,
           }"
         >
-          {{ foundItem.stock > 0 ? "In Stock" : "Out of Stock" }}
+          {{ foundItem.stock > 0 ? "Available" : "Out of Stock" }}
         </p>
 
         <!-- Conditional Pricing -->
@@ -85,22 +85,25 @@
     </div>
 
     <!-- Suggested Items -->
-    <!-- <div class="w-full max-w-6xl mt-20 mb-3 px-20">
-      <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center lg:text-left">
+    <div class="w-full max-w-6xl mt-20 mb-3 px-20">
+      <h2
+        class="text-2xl font-bold text-gray-800 mb-4 text-center lg:text-left"
+      >
         Suggested Items
       </h2>
       <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
         <ItemCard
           v-for="item in suggestedItems"
           :key="item.id"
-          :imageSrc="item.imageSrc"
+          :imageSrc="item.image"
           :title="item.name"
           :price="item.price"
           :discount="item.discount"
-          :productId="item.id"
+          :itemId="item.id"
+          :shopId="item.shopId"
         />
       </div>
-    </div> -->
+    </div>
   </div>
 
   <div v-else>
@@ -145,33 +148,65 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-
-// import ItemCard from '@/components/item-card.vue';
+import ItemCard from "@/components/item-card.vue";
 
 const router = useRouter();
 const route = useRoute();
-const foundItem = ref([]);
+const foundItem = ref([null]);
 const items = ref([]);
+const suggestedItems = ref([]);
 
 const fetchItems = async () => {
   try {
-    //fetching all shops and assign it to data
+    // Fetching all shops and assign it to data
     const res = await fetch("/shops.json");
     const data = await res.json();
 
-    const itemId = route.params.itemId;
+    const itemId = parseInt(route.params.itemId);
     const shopId = route.params.shopId;
 
+    // Find the shop by shopId
     const shop = data.find((shop) => shop.id === shopId);
-    items.value = shop ? shop.items : [];
 
-    foundItem.value = items.value.find((item) => item.id === itemId);
+
+    if (shop) {
+      // If shop is found, log the items array
+      items.value = shop.items;
+
+      // Find the item by itemId within the found shop's items
+      foundItem.value = items.value.find((item) => item.id === itemId);
+      console.log("Found Item:", foundItem.value);
+    } else {
+      console.log("Shop not found with ID:", shopId);
+    }
+    if (foundItem.value) {
+      // Find the shop using the shopId from the found item
+      const shop = data.find((shop) => shop.id === foundItem.value.shopId);
+
+      console.log("Found Item:", foundItem.value);
+      console.log("Shop:", shop);
+
+      // Assuming foundItem.value.categories is an array
+      const foundCategories = foundItem.value.categories;
+
+      // Fetch suggested items based on the categories of the found item
+      suggestedItems.value = data
+        .flatMap((shop) => shop.items) // Flatten the items from all shops
+        .filter(
+          (item) =>
+            item.categories.some((category) =>
+              foundCategories.includes(category)
+            ) && item.id !== foundItem.value.shopId
+        )
+        .slice(0, 5); // Fetch a few items in the same categories, excluding the current product
+    } else {
+      suggestedItems.value = [];
+      console.log("suggested not found");
+    }
   } catch (error) {
     console.log(error);
   }
 };
-
-// const suggestedItems = ref([]);
 
 // const fetchSuggestedItems = async () => {
 //   try {
@@ -192,7 +227,7 @@ const fetchItems = async () => {
 //   }
 // };
 const goBack = () => {
-  router.push({ name: "shop", params: { shopId: route.params.shopId } });
+  router.push({ name: "shop", params: { shopId: foundItem.value.shopId } });
 };
 
 onMounted(() => {

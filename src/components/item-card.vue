@@ -45,7 +45,6 @@ import { useRouter } from "vue-router";
 const props = defineProps({
   shopId: {
     type: [String,Number],
-    required: true,
   },
   itemId: {
     type: [String,Number],
@@ -53,10 +52,6 @@ const props = defineProps({
   },
   imageSrc: {
     type: String,
-    required: true,
-  },
-  categories: {
-    type: Array,
     required: true,
   },
   title: {

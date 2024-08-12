@@ -43,7 +43,7 @@ const routes = [
         component: About,
       },
       {
-        path: "product/:itemId/:shopId?",
+        path: "product/:shopId/:itemId",
         name: "ProductItem",
         component: ProductItem,
         props: true,

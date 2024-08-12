@@ -10,21 +10,21 @@ const slideImages = ref([
   require("/src/assets/logo/cover.png"),
 ]);
 
-const products = ref([]);
+const items = ref([]);
 
 const loadProducts = async () => {
   try {
     const response = await fetch("/data.json");
     const data = await response.json();
-    products.value = data;
+    items.value = data;
   } catch (error) {
     console.error("Error loading products:", error);
   }
 };
 
 // Computed property for filtering featured products
-const filteredProducts = computed(() => {
-  return products.value.filter(product => product.featured);
+const filteredItems = computed(() => {
+  return items.value.filter((item) => item.featured);
 });
 
 // Load products on component mount
@@ -49,13 +49,14 @@ onMounted(() => {
         class="grid justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
         <ItemCard
-        v-for="product in filteredProducts"
-          :key="product.id"
-          :imageSrc="product.image"
-          :title="product.name"
-          :price="product.price"
-          :discountPrice="product.discount"
-          :productId="product.id"
+          v-for="items in filteredItems"
+          :key="items.id"
+          :imageSrc="items.image"
+          :title="items.name"
+          :price="items.price"
+          :discount="items.discount"
+          :itemId="items.id"
+          shopId="1"
         />
       </div>
     </div>

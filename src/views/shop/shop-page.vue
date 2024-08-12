@@ -92,7 +92,6 @@
           :discount="items.discount"
           :itemId="items.id"
           :shopId="route.params.shopId"
-          :categories="items.categories"
         />
       </div>
     </div>
