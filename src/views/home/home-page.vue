@@ -12,19 +12,22 @@ const slideImages = ref([
 
 const items = ref([]);
 
+// Function to load products from JSON
 const loadProducts = async () => {
   try {
-    const response = await fetch("/data.json");
+    const response = await fetch('/shops.json');
     const data = await response.json();
-    items.value = data;
+
+    // Flatten the items from all shops and assign to items
+    items.value = data.flatMap(shop => shop.items);
   } catch (error) {
-    console.error("Error loading products:", error);
+    console.error('Error loading products:', error);
   }
 };
 
 // Computed property for filtering featured products
 const filteredItems = computed(() => {
-  return items.value.filter((item) => item.featured);
+  return items.value.filter(item => item.featured);
 });
 
 // Load products on component mount
@@ -49,14 +52,14 @@ onMounted(() => {
         class="grid justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
         <ItemCard
-          v-for="items in filteredItems"
-          :key="items.id"
-          :imageSrc="items.image"
-          :title="items.name"
-          :price="items.price"
-          :discount="items.discount"
-          :itemId="items.id"
-          shopId="1"
+          v-for="item in filteredItems"
+          :key="item.id"
+          :imageSrc="item.image"
+          :title="item.name"
+          :price="item.price"
+          :discount="item.discount"
+          :itemId="item.id"
+          :shopId="item.shopId"
         />
       </div>
     </div>
