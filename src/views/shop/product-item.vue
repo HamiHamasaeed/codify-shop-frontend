@@ -146,13 +146,13 @@
 </style>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ItemCard from "@/components/item-card.vue";
 
 const router = useRouter();
 const route = useRoute();
-const foundItem = ref([null]);
+const foundItem = ref(null);
 const items = ref([]);
 const suggestedItems = ref([]);
 
@@ -168,7 +168,6 @@ const fetchItems = async () => {
     // Find the shop by shopId
     const shop = data.find((shop) => shop.id === shopId);
 
-
     if (shop) {
       // If shop is found, log the items array
       items.value = shop.items;
@@ -179,13 +178,8 @@ const fetchItems = async () => {
     } else {
       console.log("Shop not found with ID:", shopId);
     }
+
     if (foundItem.value) {
-      // Find the shop using the shopId from the found item
-      const shop = data.find((shop) => shop.id === foundItem.value.shopId);
-
-      console.log("Found Item:", foundItem.value);
-      console.log("Shop:", shop);
-
       // Assuming foundItem.value.categories is an array
       const foundCategories = foundItem.value.categories;
 
@@ -196,38 +190,29 @@ const fetchItems = async () => {
           (item) =>
             item.categories.some((category) =>
               foundCategories.includes(category)
-            ) && item.id !== foundItem.value.shopId
+            ) && item.id !== foundItem.value.id
         )
         .slice(0, 5); // Fetch a few items in the same categories, excluding the current product
     } else {
       suggestedItems.value = [];
-      console.log("suggested not found");
+      console.log("Suggested items not found");
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-// const fetchSuggestedItems = async () => {
-//   try {
-//     const response = await fetch('/shops.json'); // Fetch all products
-//     const data = await response.json();
+// Watch for route changes and refetch items accordingly
+watch(
+  () => [route.params.itemId, route.params.shopId],
+  () => {
+    fetchItems();
+  },
+  { immediate: true } // Fetch items on component mount
+);
 
-//     // Filter suggested items
-//     suggestedItems.value = data
-//       .filter(
-//         (p) =>
-//           p.categories.some((categories) =>
-//             props.categories.split(',').includes(categories)
-//           ) && p.id !== props.id
-//       )
-//       .slice(0, 5); // Fetch a few items in the same categories, excluding the current product
-//   } catch (error) {
-//     console.error('Error loading suggested items:', error);
-//   }
-// };
 const goBack = () => {
-  router.push({ name: "shop", params: { shopId: foundItem.value.shopId } });
+  router.push({ name: "shop", params: { shopId: foundItem.value?.shopId } });
 };
 
 onMounted(() => {
